@@ -45,7 +45,7 @@
           <tr style="color:black;">
             <th style="background-color: #ddd; padding: 5px;">order_id</th>
             <th style="background-color: #ddd; padding: 5px;">username</th>
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">quantity</th>
             <th style="background-color: #ddd; padding: 5px;">order received on</th>
             <th style="background-color: #ddd; padding: 5px;">status</th>
@@ -57,7 +57,7 @@
           <tr class="stock-row" style="color: white;" >
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.order_id %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.username %></td>
-            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.med_id %></td>
+            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.quantity %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;">
               <%- new Date(item.ordered_on).toLocaleDateString('en-US', {

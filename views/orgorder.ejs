@@ -38,7 +38,7 @@
         <thead>
           <tr style="color:black;">
             <th style="background-color: #ddd; padding: 5px;">order_id</th>
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">quantity</th>
             <th style="background-color: #ddd; padding: 5px;">volunteer_id</th>
             <th style="background-color: #ddd; padding: 5px;">ordered on</th>
@@ -49,7 +49,7 @@
           <% for (const item1 of orgorderData) { %>
                 <tr class="stock-row" style="color:white">
                   <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.order_id %></td>
-                    <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.med_id %></td>
+                    <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.goods %></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.quantity %></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.sup_id%></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;">

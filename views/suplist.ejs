@@ -27,7 +27,7 @@
         
         <h2 style="color:black; margin-bottom: 20px; "> Enter List</h2>
         <form id="list-sup" action="/listsup" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
-            <input type="text" name="med_id" id="med_id" placeholder="med_id" required>
+            <input type="text" name="goods" id="goods" placeholder="goods" required>
             <input type="text" name="descrip" id="descrip" placeholder="descrip">
             <select name="availability" id="availability" required>
               <option value="available">Available</option>
@@ -44,7 +44,7 @@
       <table style="font-size: 1.6em;">
         <thead>
           <tr style="color:black;">
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">description</th>
             <th style="background-color: #ddd; padding: 5px;">availability</th>
           </tr>
@@ -52,7 +52,7 @@
         <tbody>
           <% for (const item of suplistData) { %>
             <tr class="stock-row" style="color:white">
-                <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.med_id %></td>
+                <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
                 <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.descrip%></td>
                 <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.availability%></td>
               </tr>

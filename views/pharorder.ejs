@@ -26,7 +26,7 @@
         
         <h1 style="color:black; margin-bottom: 20px; "> Order Item</h1>
         <form id="order-stock" action="/orderstock" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
-            <input type="text" name="med_id" id="med_id" placeholder="med_id" required>
+            <input type="text" name="goods" id="goods" placeholder="goods" required>
             <input type="number" name="quantity" id="quantity" placeholder="quantity" required>
             <input type="text" name="sup_id" id="sup_id" placeholder="sup_id" required>
             <input type="submit" value="Order">
@@ -54,7 +54,7 @@
         <thead>
           <tr style="color:black;">
             <th style="background-color: #ddd; padding: 5px;">order_id</th>
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">quantity</th>
             <th style="background-color: #ddd; padding: 5px;">sup_id</th>
             <th style="background-color: #ddd; padding: 5px;">ordered on</th>
@@ -66,7 +66,7 @@
           
           <tr class="stock-row" style="color: white;" >
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.order_id %></td>
-            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.med_id %></td>
+            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.quantity %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.sup_id %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;">
@@ -95,7 +95,7 @@
         <thead>
           <tr style="color:black;">
             <th style="background-color: #ddd; padding: 5px;">supplier_id</th>
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">description</th>
             <th style="background-color: #ddd; padding: 5px;">availability</th>
           </tr>
@@ -105,7 +105,7 @@
           
           <tr class="stock-row" style="color: white;" >
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.username %></td>
-            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.med_id %></td>
+            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.descrip %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.availability %></td>
           </tr>

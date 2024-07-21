@@ -29,7 +29,7 @@
         <h2 style="color:black; margin-bottom: 20px; ">Message</h2>
         <form id="org-msg" action="/orgmsg" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
             <input type="text" name="username" id="username" placeholder="pharmacy_id" required>
-            <input type="text" name="med_id" id="med_id" placeholder="med_id" required>
+            <input type="text" name="goods" id="goods" placeholder="goods" required>
             <input type="text" style="width: 150px; height: 75px;" name="msg" id="msg" placeholder="Enter message here..." required>
             <input type="submit" value="Send">
         </form> 
@@ -42,7 +42,7 @@
         <tbody>
           <% for (const item of orgmsgData) { %>
                 <tr class="stock-row" style="color:white">
-                    <td style="background-color: #ddd; padding: 5px; color:black;">To <%= item.username %>, for item <%= item.med_id %>, <%= item.msg%>, send on <%- new Date(item.send_on).toLocaleDateString('en-US', {
+                    <td style="background-color: #ddd; padding: 5px; color:black;">To <%= item.username %>, for item <%= item.goods %>, <%= item.msg%>, send on <%- new Date(item.send_on).toLocaleDateString('en-US', {
                         weekday: 'short',  // Display abbreviated weekday (e.g., Mon)
                         year: 'numeric',    // Display full year (e.g., 2024)
                         month: 'long',      // Display full month name (e.g., May)

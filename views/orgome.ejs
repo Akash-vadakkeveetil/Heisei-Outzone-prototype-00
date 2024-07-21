@@ -9,35 +9,21 @@
 <body>
 
   <nav>
-    <h1>MediPort</h1>
+    <h1>Heisei</h1>
     <div id="nav-part2">
       <a href="orgview.html"><h3>Current Stocks</h3></a>
       <a href="orgorder.html"><h3>Orders</h3></a>
       <a href="orgmessage.html"><h3>Message</h3></a>
-      <a href="login.html"><h3>LogOut</h3></a>
+      <a href="login.html"><h3>Logout</h3></a>
     </div>
   </nav>
 
 
-  <!-- <div id="page1">
+  <div id="page1">
     <h1> </h1>
     <h1> </h1>
     <h1> </h1>
     <h1> </h1>
-
-    <div class="signup-container">
-        
-        <h2 style="color:black; margin-bottom: 20px; "> Update Min_count</h2>
-        <form id="change-min" action="/changemin" method="POST" onsubmit="return preventDefaultSubmit()">
-            <input type="text" name="username" id="username" placeholder="pharmacy_id" required>
-            <input type="text" name="med_id" id="med_id" placeholder="med_id" required>
-            <input type="number" name="min_count" id="min_count" placeholder="min_count" required>
-            <input type="submit" value="Update">
-        </form> 
-    </div> -->
-
-
-
 
 <h1>Shortage</h1>
 
@@ -46,7 +32,7 @@
         <thead>
           <tr style="color:black;">
             <th style="background-color: #ddd; padding: 5px;">camp_id</th>
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">min_count</th>
             <th style="background-color: #ddd; padding: 5px;">Goods quantity</th>
             <th style="background-color: #ddd; padding: 5px;">last updated</th>
@@ -57,7 +43,7 @@
             <% if (item.quantity < item.min_count) { %>
             <tr class="stock-row" style="color:white" data-quantity="<%= item.quantity %>" data-min-count="<%= item.min_count %>">
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.username %></td>
-                <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.med_id %></td>
+                <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.goods %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.min_count %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.quantity %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;">  <%- new Date(item.last_updated).toLocaleDateString('en-US', {

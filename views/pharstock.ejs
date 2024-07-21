@@ -25,7 +25,7 @@
         
         <h1 style="color:black; margin-bottom: 20px; "> Enter Stock</h1>
         <form id="new-stock" action="/newstock" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
-            <input type="text" name="med_id" id="med_id" placeholder="med_id" required>
+            <input type="text" name="goods" id="goods" placeholder="goods" required>
             <input type="text" name="descrip" id="descrip" placeholder="descrip" >
             <input type="number" name="price" id="price" placeholder="price">
             <input type="number" name="min_count" id="min_count" placeholder="min_count">
@@ -43,7 +43,7 @@
       <table style="font-size: 1.6em;">
         <thead>
           <tr style="color:black;">
-            <th style="background-color: #ddd; padding: 5px;">med_id</th>
+            <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">description</th>
             <th style="background-color: #ddd; padding: 5px;">price</th>
             <th style="background-color: #ddd; padding: 5px;">min_count</th>
@@ -54,7 +54,7 @@
           <% for (const item of stockData) { %>
           <% if(item.quantity >= item.min_count) { %>
           <tr class="stock-row" style="color: white;" data-quantity="<%= item.quantity %>" data-min-count="<%= item.min_count %>">
-            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.med_id %></td>
+            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.descrip %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.price %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.min_count %></td>
@@ -63,7 +63,7 @@
         
           <% } else if (item.quantity < item.min_count) { %>
             <tr class="stock-row" style="color:white" data-quantity="<%= item.quantity %>" data-min-count="<%= item.min_count %>">
-                <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.med_id %></td>
+                <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.goods %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.descrip %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.price %></td>
                 <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item.min_count %></td>

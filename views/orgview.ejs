@@ -31,7 +31,7 @@
         
   <h2 style="color:black; margin-bottom: 20px; ">Camp Stock</h2>
   <form id="org-show-stock" action="/orgshowstock" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
-      <input type="text" name="username" id="username" placeholder="pharmacy_id" required>
+      <input type="text" name="username" id="username" placeholder="Camp Name" required>
       <input type="submit" value="Show Stock">
   </form> 
 </div>
@@ -42,7 +42,7 @@
 <table style="font-size: 1.6em;">
   <thead>
     <tr style="color:black;">
-      <th style="background-color: #ddd; padding: 5px;">med_id</th>
+      <th style="background-color: #ddd; padding: 5px;">goods</th>
       <th style="background-color: #ddd; padding: 5px;">description</th>
       <th style="background-color: #ddd; padding: 5px;">price</th>
       <th style="background-color: #ddd; padding: 5px;">min_count</th>
@@ -54,7 +54,7 @@
     <% for (const item1 of orgstockData) { %>
       <% if (item1.quantity < item1.min_count) { %>
           <tr class="stock-row" style="color:white" data-quantity="<%= item1.quantity %>" data-min-count="<%= item1.min_count %>">
-              <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item1.med_id %></td>
+              <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item1.goods %></td>
               <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item1.descrip %></td>
               <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item1.price %></td>
               <td style="background-color: rgb(250, 119, 119); padding: 5px; color:black;"><%= item1.min_count %></td>
@@ -70,7 +70,7 @@
             </tr>
         <% }  else if(item1.quantity >= item1.min_count) { %>
           <tr class="stock-row" style="color:white" data-quantity="<%= item1.quantity %>" data-min-count="<%= item1.min_count %>">
-              <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.med_id %></td>
+              <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.goods %></td>
               <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.descrip %></td>
               <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.price %></td>
               <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.min_count %></td>
@@ -92,7 +92,7 @@
 <p>No stock data found.</p>
 <% } %>
 
-<h1>Pharmacies</h1>
+<h1>Camps</h1>
 
     <% if (pharmacyData) { %>
       <table style="font-size: 1.6em;">

@@ -20,7 +20,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root', // Your MySQL username
     password: '', // Your MySQL password (leave empty if you haven't set any)
-    database: 'medisup1'
+    database: 'heisei'
 });
 
 //global variables
@@ -46,7 +46,7 @@ app.post('/signup', (req, res) => {
             {
                 
                 const query1 = `CREATE TABLE IF NOT EXISTS ${usernameconst1} (
-                    med_id VARCHAR(255) NOT NULL PRIMARY KEY,
+                    goods VARCHAR(255) NOT NULL PRIMARY KEY,
                     descrip VARCHAR(255) NOT NULL,
                     price FLOAT DEFAULT NULL,
                     min_count INT DEFAULT NULL,
@@ -254,7 +254,7 @@ async function getStockData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const [rows] = await connection.query(`SELECT * FROM ${usernameconst1} `); // Adjust query based on your table name
         connection.end(); // Close the connection (optional - connection pool might handle it)
@@ -286,7 +286,7 @@ async function getOrderData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM med_order WHERE username = '${usernameconst1}'`;
         const [rows] = await connection.query(sql);
@@ -308,7 +308,7 @@ async function getSuplistData1() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql1 = `SELECT * FROM medsup`;
         const [rows] = await connection.query(sql1);
@@ -341,8 +341,8 @@ app.get('/pharorder-details', async (req, res) => {
 
 //form of pharmacy new/update stock/////////////////////////////////////////////////////////
 app.post('/newstock', (req, res) => {
-    const { med_id,descrip,price,min_count,quantity } = req.body;
-    console.log('Received data:', {  med_id,descrip,price,min_count,quantity });
+    const { goods,descrip,price,min_count,quantity } = req.body;
+    console.log('Received data:', {  goods,descrip,price,min_count,quantity });
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -359,8 +359,8 @@ app.post('/newstock', (req, res) => {
 
             const currentDate=indianTime;
             const formattedDate = currentDate.toISOString().slice(0, 10);
-            const query1 = `INSERT INTO admin ( username,med_id,min_count,quantity,last_updated ) VALUES (?, ?, ?, ?,?)`;
-            connection.query(query1, [ usernameconst1,med_id,min_count,quantity,formattedDate ], (error, results) => {
+            const query1 = `INSERT INTO admin ( username,goods,min_count,quantity,last_updated ) VALUES (?, ?, ?, ?,?)`;
+            connection.query(query1, [ usernameconst1,goods,min_count,quantity,formattedDate ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
@@ -370,8 +370,8 @@ app.post('/newstock', (req, res) => {
             });
              
             //for pharmacy
-            const query = `INSERT INTO ${usernameconst1} ( med_id,descrip,price,min_count,quantity,last_updated ) VALUES (?, ?, ?, ?, ?,?)`;
-            connection.query(query, [ med_id,descrip,price,min_count,quantity,formattedDate ], (error, results) => {
+            const query = `INSERT INTO ${usernameconst1} ( goods,descrip,price,min_count,quantity,last_updated ) VALUES (?, ?, ?, ?, ?,?)`;
+            connection.query(query, [ goods,descrip,price,min_count,quantity,formattedDate ], (error, results) => {
                 connection.release();
                 if (error) {
                     console.error('Error executing query: ' + error.message);
@@ -395,8 +395,8 @@ app.post('/newstock', (req, res) => {
             const currentDate=indianTime;
             console.log(currentDate);
             const formattedDate = currentDate.toISOString().slice(0, 10);
-            const query1 = `UPDATE admin set quantity=?,min_count=?,last_updated=? where med_id=? and username=?`;
-            connection.query(query1, [ quantity,min_count,formattedDate,med_id,usernameconst1 ], (error, results) => {
+            const query1 = `UPDATE admin set quantity=?,min_count=?,last_updated=? where goods=? and username=?`;
+            connection.query(query1, [ quantity,min_count,formattedDate,goods,usernameconst1 ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
@@ -408,8 +408,8 @@ app.post('/newstock', (req, res) => {
             //for pharmacy
             if(req.body.price)
             {
-                const query = `UPDATE ${usernameconst1} set price=?,min_count=?, quantity=?, last_updated=? where med_id= ? `;
-                connection.query(query, [ price,min_count,quantity,formattedDate,med_id ], (error, results) => {
+                const query = `UPDATE ${usernameconst1} set price=?,min_count=?, quantity=?, last_updated=? where goods= ? `;
+                connection.query(query, [ price,min_count,quantity,formattedDate,goods ], (error, results) => {
                     connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -423,8 +423,8 @@ app.post('/newstock', (req, res) => {
             }
             else
             {
-                const query = `UPDATE ${usernameconst1} set quantity=?,min_count=?, last_updated=? where med_id= ? `;
-                connection.query(query, [ quantity,min_count,formattedDate,med_id ], (error, results) => {
+                const query = `UPDATE ${usernameconst1} set quantity=?,min_count=?, last_updated=? where goods= ? `;
+                connection.query(query, [ quantity,min_count,formattedDate,goods ], (error, results) => {
                     connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -447,8 +447,8 @@ app.post('/newstock', (req, res) => {
             const currentDate=indianTime;
             console.log(currentDate);
             const formattedDate = currentDate.toISOString().slice(0, 10);
-            const query1 = `UPDATE admin set quantity=?,last_updated=? where med_id=? and username=?`;
-            connection.query(query1, [ quantity,formattedDate,med_id,usernameconst1 ], (error, results) => {
+            const query1 = `UPDATE admin set quantity=?,last_updated=? where goods=? and username=?`;
+            connection.query(query1, [ quantity,formattedDate,goods,usernameconst1 ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
@@ -460,8 +460,8 @@ app.post('/newstock', (req, res) => {
             //for pharmacy
             if(req.body.price)
             {
-                const query = `UPDATE ${usernameconst1} set price=?, quantity=?, last_updated=? where med_id= ? `;
-                connection.query(query, [ price,quantity,formattedDate,med_id ], (error, results) => {
+                const query = `UPDATE ${usernameconst1} set price=?, quantity=?, last_updated=? where goods= ? `;
+                connection.query(query, [ price,quantity,formattedDate,goods ], (error, results) => {
                     connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -475,8 +475,8 @@ app.post('/newstock', (req, res) => {
             }
             else
             {
-                const query = `UPDATE ${usernameconst1} set quantity=?, last_updated=? where med_id= ? `;
-                connection.query(query, [ quantity,formattedDate,med_id ], (error, results) => {
+                const query = `UPDATE ${usernameconst1} set quantity=?, last_updated=? where goods= ? `;
+                connection.query(query, [ quantity,formattedDate,goods ], (error, results) => {
                     connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -498,8 +498,8 @@ app.post('/newstock', (req, res) => {
 
 //form of pharmacy order////////////////////////////////////////////////////////////////
 app.post('/orderstock', (req, res) => {
-    const { med_id,quantity,sup_id } = req.body;
-    console.log('Received data:', { med_id,quantity,sup_id });
+    const { goods,quantity,sup_id } = req.body;
+    console.log('Received data:', { goods,quantity,sup_id });
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().slice(0, 10);
     pool.getConnection((err, connection) => {
@@ -508,8 +508,8 @@ app.post('/orderstock', (req, res) => {
             res.status(500).send('Internal Server Error');
             return;
         }
-            const query = `INSERT INTO med_order ( username,med_id,quantity,sup_id, ordered_on ) VALUES (?, ?, ?, ?, ?)`;
-            connection.query(query, [ usernameconst1,med_id,quantity,sup_id,formattedDate ], (error, results) => {
+            const query = `INSERT INTO med_order ( username,goods,quantity,sup_id, ordered_on ) VALUES (?, ?, ?, ?, ?)`;
+            connection.query(query, [ usernameconst1,goods,quantity,sup_id,formattedDate ], (error, results) => {
                 connection.release();
                 if (error) {
                     console.error('Error executing query: ' + error.message);
@@ -532,7 +532,7 @@ async function getSupplierData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM med_order WHERE sup_id = '${supplierconst1}'`;
         const [rows] = await connection.query(sql);
@@ -554,7 +554,7 @@ async function getPharmacyData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM pharmacy`;
         const [rows] = await connection.query(sql);
@@ -592,7 +592,7 @@ async function getOrganData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM admin WHERE quantity<min_count;`;
         const [rows] = await connection.query(sql);
@@ -620,8 +620,8 @@ app.get('/organization-details', async (req, res) => {
 
 //change min_count by organization//////////////////////////////////////////////////////
 app.post('/changemin', (req, res) => {
-    const { username,med_id,min_count } = req.body;
-    console.log('Received data:', {  username,med_id,min_count });
+    const { username,goods,min_count } = req.body;
+    console.log('Received data:', {  username,goods,min_count });
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -629,16 +629,16 @@ app.post('/changemin', (req, res) => {
             res.status(500).send('Internal Server Error');
             return;
             }
-            const query1 = `UPDATE ${username} set min_count=? where med_id=?`;
-            connection.query(query1, [ min_count,med_id ], (error, results) => {
+            const query1 = `UPDATE ${username} set min_count=? where goods=?`;
+            connection.query(query1, [ min_count,goods ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
                     return;
                 }
             });
-            const query2 = `UPDATE admin set min_count=? where med_id=?`;
-            connection.query(query2, [ min_count,med_id ], (error, results) => {
+            const query2 = `UPDATE admin set min_count=? where goods=?`;
+            connection.query(query2, [ min_count,goods ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
@@ -659,7 +659,7 @@ async function getPharmacyData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM pharmacy`;
         const [rows] = await connection.query(sql);
@@ -681,7 +681,7 @@ async function getOrgstockData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql1 = `SELECT * FROM ${orgconst1} `;
         const [rows] = await connection.query(sql1);
@@ -727,7 +727,7 @@ async function getOrgorderData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM med_order where username='${orgconst2}'`;
         const [rows] = await connection.query(sql);
@@ -763,8 +763,8 @@ app.post('/orgshoworder', (req, res) => {
 
 //form of org msg////////////////////////////////////////////////////////////////
 app.post('/orgmsg', (req, res) => {
-    const { username,med_id,msg} = req.body;
-    console.log('Received data:', {  username,med_id,msg});
+    const { username,goods,msg} = req.body;
+    console.log('Received data:', {  username,goods,msg});
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().slice(0, 10);
     pool.getConnection((err, connection) => {
@@ -773,8 +773,8 @@ app.post('/orgmsg', (req, res) => {
             res.status(500).send('Internal Server Error');
             return;
         }
-            const query = `INSERT INTO message ( username,med_id,msg,send_on ) VALUES (?, ?, ?, ?)`;
-            connection.query(query, [ username,med_id,msg,formattedDate ], (error, results) => {
+            const query = `INSERT INTO message ( username,goods,msg,send_on ) VALUES (?, ?, ?, ?)`;
+            connection.query(query, [ username,goods,msg,formattedDate ], (error, results) => {
                 connection.release();
                 if (error) {
                     console.error('Error executing query: ' + error.message);
@@ -798,7 +798,7 @@ async function getOrgmsgData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql1 = `SELECT * FROM message `;
         const [rows] = await connection.query(sql1);
@@ -831,7 +831,7 @@ async function getPharmsgData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql1 = `SELECT * FROM message where username='${usernameconst1}'`;
         const [rows] = await connection.query(sql1);
@@ -904,7 +904,7 @@ app.post('/orderpharstatus', (req, res) => {
                 }
             });
 
-            const query1 = `SELECT med_id,quantity FROM med_order where order_id=?`;
+            const query1 = `SELECT goods,quantity FROM med_order where order_id=?`;
             connection.query(query1, [order_id ], (error, results) => {
                // connection.release();
                 if (error) {
@@ -912,16 +912,16 @@ app.post('/orderpharstatus', (req, res) => {
                     res.status(500).send('Internal Server Error');
                     return;
                 }
-                const med_id1 = results.map(row => row.med_id);
+                const goods1 = results.map(row => row.goods);
                 const quantity1 = results.map(row => row.quantity);
-                processResults(med_id1, quantity1);
-                processResults1(med_id1, quantity1);
+                processResults(goods1, quantity1);
+                processResults1(goods1, quantity1);
                 
             });
             //for pharmacy
-            function processResults(med_id1, quantity1) {
-            const query2 = `UPDATE ${usernameconst1} set quantity=quantity+? where med_id=?`;
-            connection.query(query2, [ quantity1,med_id1 ], (error, results) => {
+            function processResults(goods1, quantity1) {
+            const query2 = `UPDATE ${usernameconst1} set quantity=quantity+? where goods=?`;
+            connection.query(query2, [ quantity1,goods1 ], (error, results) => {
                 if (error) {
                     console.error('Error executing query: ' + error.message);
                     res.status(500).send('Internal Server Error');
@@ -930,9 +930,9 @@ app.post('/orderpharstatus', (req, res) => {
             });
             }
             //for admin
-            function processResults1(med_id1, quantity1) {
-                const query3 = `UPDATE admin set quantity=quantity+? where med_id=? and username=?`;
-                connection.query(query3, [ quantity1,med_id1,usernameconst1 ], (error, results) => {
+            function processResults1(goods1, quantity1) {
+                const query3 = `UPDATE admin set quantity=quantity+? where goods=? and username=?`;
+                connection.query(query3, [ quantity1,goods1,usernameconst1 ], (error, results) => {
                    connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -951,8 +951,8 @@ app.post('/orderpharstatus', (req, res) => {
 
 //form of supplier list////////////////////////////////////////////////////////////////////
 app.post('/listsup', (req, res) => {
-    const { med_id,descrip,availability } = req.body;
-    console.log('Received data:', { med_id,descrip,availability});
+    const { goods,descrip,availability } = req.body;
+    console.log('Received data:', { goods,descrip,availability});
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -962,8 +962,8 @@ app.post('/listsup', (req, res) => {
         }
         if(req.body.descrip)
         {
-            const query = `INSERT INTO medsup ( username,med_id,descrip,availability ) VALUES (?, ?, ?, ?)`;
-            connection.query(query, [ supplierconst1,med_id,descrip,availability ], (error, results) => {
+            const query = `INSERT INTO medsup ( username,goods,descrip,availability ) VALUES (?, ?, ?, ?)`;
+            connection.query(query, [ supplierconst1,goods,descrip,availability ], (error, results) => {
                 connection.release();
                 if (error) {
                     console.error('Error executing query: ' + error.message);
@@ -977,8 +977,8 @@ app.post('/listsup', (req, res) => {
             
         }
         else{
-                const query = `UPDATE medsup set availability=? where med_id= ? and username=?`;
-                connection.query(query, [ availability,med_id,supplierconst1 ], (error, results) => {
+                const query = `UPDATE medsup set availability=? where goods= ? and username=?`;
+                connection.query(query, [ availability,goods,supplierconst1 ], (error, results) => {
                     connection.release();
                     if (error) {
                         console.error('Error executing query: ' + error.message);
@@ -1003,7 +1003,7 @@ async function getSuplistData() {
             host: 'localhost', // Replace with your database server hostname/IP
             user: 'root', // Replace with your database username
             password: '', // Replace with your database password
-            database: 'medisup1' // Optional - Replace with database name if needed
+            database: 'heisei' // Optional - Replace with database name if needed
         });
         const sql = `SELECT * FROM medsup where username='${supplierconst1}'`;
         const [rows] = await connection.query(sql);

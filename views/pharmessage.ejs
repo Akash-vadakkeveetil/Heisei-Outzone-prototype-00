@@ -27,7 +27,7 @@
         <tbody>
           <% for (const item of pharmsgData) { %>
                 <tr class="stock-row" style="color:white">
-                    <td style="background-color: #fbdede; padding: 5px; color:black;">For item <%= item.med_id %>, <%= item.msg%> ,received on <%- new Date(item.send_on).toLocaleDateString('en-US', {
+                    <td style="background-color: #fbdede; padding: 5px; color:black;">For item <%= item.goods %>, <%= item.msg%> ,received on <%- new Date(item.send_on).toLocaleDateString('en-US', {
                         weekday: 'short',  // Display abbreviated weekday (e.g., Mon)
                         year: 'numeric',    // Display full year (e.g., 2024)
                         month: 'long',      // Display full month name (e.g., May)

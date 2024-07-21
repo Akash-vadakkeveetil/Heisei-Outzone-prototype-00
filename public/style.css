@@ -226,7 +226,7 @@ h3{
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 80px;
+    box-shadow: 0 0 0px;
     width: 300px;
     border-color: #4CAF50;
     background-color: #f0f0f0;
@@ -236,6 +236,8 @@ h3{
 .signup-container h2 {
     text-align: center;
 }
+
+
 
 .signup-container input[type="text"],
 .signup-container input[type="email"],

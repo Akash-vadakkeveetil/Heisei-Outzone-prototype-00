@@ -69,7 +69,7 @@ body {
 
 nav {
   position: fixed;
-  top: 0;
+  top: 10px;
   background: transparent; /* Fully transparent background */
   backdrop-filter: blur(15px); /* Blur effect */
   display: flex;
@@ -82,9 +82,11 @@ nav {
 }
 
 nav h1 {
-  font-size: 3vh; /* Smaller font size for the "Heisei" name */
+  font-size: 5vh; /* Smaller font size for the "Heisei" name */
   font-weight: bold;
   color: white;
+  margin:0;
+  padding-top: 10px;
 }
 
 #nav-part2 {
@@ -135,6 +137,7 @@ h1, h3, h2 {
 h1 {
   font-size: 3em;
   padding-top: 30px;
+  margin-top: 20%;
 }
 
 h3 {

@@ -4,51 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phar-details</title>
-  <link rel="stylesheet" href="phar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="view_css/pharome.css">
 </head>
 <body>
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <nav>
+      <h1>Heisei</h1>
+      <div id="nav-part2">
+        <a href="pharstock.html"><h3>Current Stock</h3></a>
+        <a href="pharorder.html"><h3>Order</h3></a>
+        <a href="pharmessage.html"><h3>Message</h3></a>
+        <a href="login.html"><h3>LogOut</h3></a>
+        <% if (pharmacyDetails) { %>
+          <h2 class="username">
+            <i class="fas fa-user"></i> <%= pharmacyDetails.username %>
+          </h2>
+        <% } else { %>
+          <h2 class="username">
+            <i class="fas fa-user"></i> Guest
+          </h2>
+        <% } %>
+        
+      </div>
+    </nav>
 
-<nav>
-  <h1>Heisei</h1>
- 
-  <div id="nav-part2">
-     <a href="pharstock.html"><h3>Current Stock</h3></a>
-     <a href="pharorder.html"><h3>Order</h3></a>
-     <a href="pharmessage.html"><h3>Message</h3></a>
-     <a href="login.html"><h3>LogOut</h3></a>
-     <h2><%= pharmacyDetails.username %> </h2>
-  </div>
-</nav>
+    <div id="page1">
+      <h1></h1>
+      <h1></h1>
+      <h1>Camp Details</h1>
 
-
-  <div id="page1">
-    <h1> </h1>
-    <h1> </h1>
-    <h1> </h1>
-    <h1> </h1>
-    <h1>Camp Details</h1>
-  
-    <% if (pharmacyDetails) { %>
-      <p style="color: black; font-size: 4vh;">Username: <%= pharmacyDetails.username %></p>
-      <p style="color: black; font-size: 4vh;">Camp Name: <%= pharmacyDetails.pharmacyname %></p>
-      <p style="color: black; font-size: 4vh;">Location: <%= pharmacyDetails.location %></p>
-      <p style="color: black; font-size: 4vh;">Pin No: <%= pharmacyDetails.pinno %></p>
-      <p style="color: black; font-size: 4vh;">Contact Number: <%= pharmacyDetails.contactnumber %></p>
-      <p style="color: black; font-size: 4vh;">Established: <%= 
-        new Date(pharmacyDetails.established).toLocaleDateString('en-GB', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).split('/').join('/') 
-      %></p>
+    <div class="details-container">
+      <% if (pharmacyDetails) { %>
+        <p style="color: black; font-size: 4vh;">Username: <%= pharmacyDetails.username %></p>
+        <p style="color: black; font-size: 4vh;">Camp Name: <%= pharmacyDetails.Camp_name %></p>
+        <p style="color: black; font-size: 4vh;">Location: <%= pharmacyDetails.location %></p>
+        <p style="color: black; font-size: 4vh;">Pin No: <%= pharmacyDetails.pinno %></p>
+        <p style="color: black; font-size: 4vh;">Contact Number: <%= pharmacyDetails.contactnumber %></p>
+        <p style="color: black; font-size: 4vh;">Established: <%= 
+          new Date(pharmacyDetails.established).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+          }).split('/').join('/') 
+        %></p>
       <% } else { %>
-      <p>Camp details not found.</p>
-    <% } %>
+        <p>Camp details not found.</p>
+      <% } %>
+    </div>
 
-    <h1> </h1>
-        <h1>_________</h1>
-          
-</div>
-
+      <h1></h1>
+      <h1>_________</h1>
+    </div>
+  </div>
 </body>
 </html>

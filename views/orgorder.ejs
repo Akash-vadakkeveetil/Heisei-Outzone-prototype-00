@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organization-view-order</title>
-  <link rel="stylesheet" href="phar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="view_css/orgorder.css">
 </head>
 <body>
 
@@ -51,7 +52,7 @@
                   <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.order_id %></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.goods %></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.quantity %></td>
-                    <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.sup_id%></td>
+                    <td style="background-color: #ddd; padding: 5px; color:black;"><%= item1.Volunteer_id%></td>
                     <td style="background-color: #ddd; padding: 5px; color:black;">
                       <%- new Date(item1.ordered_on).toLocaleDateString('en-US', {
                         weekday: 'short',  // Display abbreviated weekday (e.g., Mon)

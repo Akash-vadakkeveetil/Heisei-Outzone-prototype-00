@@ -4,10 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phar-order</title>
-  <link rel="stylesheet" href="phar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="view_css/pharorder.css">
 </head>
 <body>
 
+<div class="area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  
   <nav>
     <h1>Heisei</h1>
     <div id="nav-part2">
@@ -28,7 +43,7 @@
         <form id="order-stock" action="/orderstock" method="POST" onsubmit="return preventDefaultSubmit()"> <!-- Added ID to the form -->
             <input type="text" name="goods" id="goods" placeholder="goods" required>
             <input type="number" name="quantity" id="quantity" placeholder="quantity" required>
-            <input type="text" name="sup_id" id="sup_id" placeholder="sup_id" required>
+            <input type="text" name="Volunteer_id" id="Volunteer_id" placeholder="Volunteer_id" required>
             <input type="submit" value="Order">
         </form> 
     </div>
@@ -56,7 +71,7 @@
             <th style="background-color: #ddd; padding: 5px;">order_id</th>
             <th style="background-color: #ddd; padding: 5px;">goods</th>
             <th style="background-color: #ddd; padding: 5px;">quantity</th>
-            <th style="background-color: #ddd; padding: 5px;">sup_id</th>
+            <th style="background-color: #ddd; padding: 5px;">Volunteer_id</th>
             <th style="background-color: #ddd; padding: 5px;">ordered on</th>
             <th style="background-color: #ddd; padding: 5px;">status</th>
           </tr>
@@ -68,7 +83,7 @@
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.order_id %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.goods %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.quantity %></td>
-            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.sup_id %></td>
+            <td style="background-color: #ddd; padding: 5px; color:black;"><%= item.Volunteer_id %></td>
             <td style="background-color: #ddd; padding: 5px; color:black;">
             <%- new Date(item.ordered_on).toLocaleDateString('en-US', {
               weekday: 'short',  // Display abbreviated weekday (e.g., Mon)
@@ -244,6 +259,7 @@
 
 
   </div>
+</div>
 
 </body>
 </html>

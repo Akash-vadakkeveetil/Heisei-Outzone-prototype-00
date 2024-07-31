@@ -43,13 +43,13 @@ html, body {
   
   #nav-part2 a {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #ffffff;
-    color: #4CAF50;
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #4CAF50; /* Green color for text */
+  font-size: 2vh; /* Adjust font size for better fit */
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   #nav-part2 a:hover {

@@ -91,8 +91,11 @@ nav h1 {
 
 #nav-part2 {
   display: flex;
+  float:left;
   align-items: center;
-  gap: 1vw; /* Adjusted gap between links */
+  gap: 1vw; 
+  position:relative;
+  /* Adjusted gap between links */
 }
 
 #nav-part2 a {
@@ -106,13 +109,14 @@ nav h1 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#nav-part2 a:hover {
-  background-color: #4CAF50; /* Green background on hover */
-  color: white; /* White text on hover */
+nav h1:hover {
+  color: #8BC34A; /* Change color on hover */
+  transform: scale(1.1); /*Slight scale effect on hover */
 }
 
 #nav-part2 a h3 {
   margin: 0;
+  
 }
 
 #nav-part2 .login {

@@ -181,7 +181,8 @@ app.get('/pharome-details', (req, res) => {
   
         if (results.length === 0) {
           // Handle case where no pharmacy details found
-          res.redirect('/pharprof.html');
+        //   res.redirect('/pharprof.html');
+          res.redirect('/pharome.html');
         }
   
         const pharmacyDetails = results[0]; // Assuming there's only one record per username
@@ -369,7 +370,7 @@ app.post('/newstock', (req, res) => {
                 
             });
              
-            //for pharmacy
+            //for camp
             const query = `INSERT INTO ${usernameconst1} ( goods,descrip,price,min_count,quantity,last_updated ) VALUES (?, ?, ?, ?, ?,?)`;
             connection.query(query, [ goods,descrip,price,min_count,quantity,formattedDate ], (error, results) => {
                 connection.release();

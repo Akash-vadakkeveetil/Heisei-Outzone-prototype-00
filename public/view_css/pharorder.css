@@ -92,7 +92,7 @@ html, body {
   
   nav h1:hover {
     color: #8BC34A; /* Change color on hover */
-    transform: scale(1.1); /* Slight scale effect on hover */
+    transform: scale(1.1); /*Slight scale effect on hover */
   }
   
   #nav-part2 {
@@ -106,7 +106,7 @@ html, body {
     padding: 10px 20px;
     background-color: #ffffff;
     color: #4CAF50; /* Green color for text */
-    font-size: 2.5vh;
+    font-size: 2vh;
     text-decoration: none;
     border-radius: 25px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -122,13 +122,21 @@ html, body {
   }
   
   #nav-part2 h2 {
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #4CAF50; /* Distinctive background color for login */
-    padding: 10px 20px;
-    border-radius: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background: linear-gradient(135deg, #4CAF50, #8BC34A); /* Gradient background */
+    color: #ffffff; /* White text color */
+    font-size: 2vh; /* Adjust font size as needed */
+    font-weight: bold; /* Bold font for prominence */
+    padding: 8px 16px; /* Padding for better spacing */
+    border-radius: 30px; /* More rounded corners for a modern look */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    text-align: center; /* Center-align text */
+    display: inline-flex; /* Flexbox for alignment */
+    align-items: center; /* Align items vertically */
+    border: 2px solid transparent; /* Initial transparent border */
+    background-clip: padding-box; /* Clip background to padding box */
+    max-width: 80vw; /* Ensure the element doesn't overflow the screen */
+    overflow-wrap: break-word; 
   }
   
   #nav-part2 h2:hover {

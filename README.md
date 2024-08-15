@@ -1,6 +1,6 @@
 # Heisei-Outzone
 
-# Example Markdown with Toggle
+> This is a prototype developed for a hackathon
 
 <details>
   <summary>The problem statement</summary>
